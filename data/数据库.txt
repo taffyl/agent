@@ -1,0 +1,6 @@
+1、数据库是在 20 世纪 60 年代末发展起来的一项重要技术，20 世纪 70 年代以来数据库技术得到迅猛发展，已经成为计算机科学与技术的一个重要分支。
+2、数据库技术和系统已经成为信息基础设施的核心技术和重要基础，数据库技术作为数据管理的最有效的手段，极大地促进了计算机应用的发展。
+3、数据库技术主要是用来解决数据处理的非数值计算问题，数据处理的主要内容是数据的存储、查询、修改、排序和统计等。
+4、数据库管理系统是为管理数据库而设计的电脑软件系统，一般具有存储、截取、安全保障、备份等基础功能。数据库管理系统可以依据它所支持的数据库模型来作分类，例如关系式、XML；或依据所支持的计算机类型来作分类，例如服务器群集、移动电话；或依据所用查询语言来作分类，例如SQL、XQuery；或依据性能冲量重点来作分类，例如最大规模、最高运行速度；亦或其他的分类方式。
+5、数据库管理系统的种类很多，如Oracle、MySQL、DB2、SQL Server、Sybase、Informix、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL Server、Oracle、IBM DB2、Microsoft SQL。
+6、关系型数据库按照结构化的方法存储数据，每个数据表都必须对各个字段定义好（也就是先定义好表的结构），再根据表的结构存入数据，这样做的好处就是由于数据的形式和内容在存入数据之前就已经定义好了，所以整个数据表的可靠性和稳定性都比较高，但带来的问题就是一旦存入数据后，如果需要修改数据表的结构就会十分困难。

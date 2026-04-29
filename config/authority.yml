@@ -1,0 +1,1 @@
+authority : ["READ_ONLY", "READ_WRITE", "DELETE_ONLY", "DELETE_READ_WRITE"]

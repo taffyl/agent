@@ -1,0 +1,215 @@
+2026-04-30 00:11:34,847 - agent - WARNING - logger_hander.py:64 - test
+2026-04-30 00:11:34,847 - agent - WARNING - logger_hander.py:65 - test2
+2026-04-30 00:31:38,284 - agent - ERROR - vector_store.py:140 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载失败。'VectorStoreService' object has no attribute 'split'
+Traceback (most recent call last):
+  File "e:\github\ai\rag\vector_store.py", line 125, in load_documents
+    splited_document: list[Document] = self.split.split_documents(documents)
+                                       ^^^^^^^^^^
+AttributeError: 'VectorStoreService' object has no attribute 'split'
+2026-04-30 00:33:58,635 - agent - ERROR - vector_store.py:140 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载失败。status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+Traceback (most recent call last):
+  File "e:\github\ai\rag\vector_store.py", line 131, in load_documents
+    self.vector_store.add_documents(splited_document)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_core\vectorstores\base.py", line 258, in add_documents
+    return self.add_texts(texts, metadatas, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_chroma\vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 155, in embed_documents
+    embeddings = embed_with_retry(
+        self, input=texts, text_type="document", model=self.model
+    )
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 83, in embed_with_retry
+    return _embed_with_retry(**kwargs)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 70, in _embed_with_retry
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+2026-04-30 00:37:04,370 - agent - ERROR - vector_store.py:143 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载失败。status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+Traceback (most recent call last):
+  File "e:\github\ai\rag\vector_store.py", line 134, in load_documents
+    self.vector_store.add_documents(splited_document)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_core\vectorstores\base.py", line 258, in add_documents
+    return self.add_texts(texts, metadatas, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_chroma\vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 155, in embed_documents
+    embeddings = embed_with_retry(
+        self, input=texts, text_type="document", model=self.model
+    )
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 83, in embed_with_retry
+    return _embed_with_retry(**kwargs)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 70, in _embed_with_retry
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+2026-04-30 00:38:28,867 - agent - ERROR - vector_store.py:143 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载失败。status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+Traceback (most recent call last):
+  File "e:\github\ai\rag\vector_store.py", line 134, in load_documents
+    self.vector_store.add_documents(splited_document)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_core\vectorstores\base.py", line 258, in add_documents
+    return self.add_texts(texts, metadatas, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_chroma\vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 155, in embed_documents
+    embeddings = embed_with_retry(
+        self, input=texts, text_type="document", model=self.model
+    )
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 83, in embed_with_retry
+    return _embed_with_retry(**kwargs)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 70, in _embed_with_retry
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+2026-04-30 00:41:53,648 - agent - ERROR - vector_store.py:143 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载失败。status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+Traceback (most recent call last):
+  File "e:\github\ai\rag\vector_store.py", line 134, in load_documents
+    self.vector_store.add_documents(splited_document)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_core\vectorstores\base.py", line 258, in add_documents
+    return self.add_texts(texts, metadatas, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_chroma\vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 155, in embed_documents
+    embeddings = embed_with_retry(
+        self, input=texts, text_type="document", model=self.model
+    )
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 83, in embed_with_retry
+    return _embed_with_retry(**kwargs)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 70, in _embed_with_retry
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+2026-04-30 00:45:54,803 - agent - ERROR - vector_store.py:143 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载失败。status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+Traceback (most recent call last):
+  File "e:\github\ai\rag\vector_store.py", line 134, in load_documents
+    self.vector_store.add_documents(splited_document)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_core\vectorstores\base.py", line 258, in add_documents
+    return self.add_texts(texts, metadatas, **kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\python\Lib\site-packages\langchain_chroma\vectorstores.py", line 627, in add_texts
+    embeddings = self._embedding_function.embed_documents(texts)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 155, in embed_documents
+    embeddings = embed_with_retry(
+        self, input=texts, text_type="document", model=self.model
+    )
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 83, in embed_with_retry
+    return _embed_with_retry(**kwargs)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 331, in wrapped_f
+    return copy(f, *args, **kw)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 470, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 371, in iter
+    result = action(retry_state)
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 393, in <lambda>
+    self._add_action_func(lambda rs: rs.outcome.result())
+                                     ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 449, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "E:\python\Lib\concurrent\futures\_base.py", line 401, in __get_result
+    raise self._exception
+  File "E:\python\Lib\site-packages\tenacity\__init__.py", line 473, in __call__
+    result = fn(*args, **kwargs)
+  File "E:\python\Lib\site-packages\langchain_community\embeddings\dashscope.py", line 70, in _embed_with_retry
+    raise ValueError(
+    ...<2 lines>...
+    )
+ValueError: status_code: 400 
+ code: InvalidParameter 
+ message: Model not exist.
+2026-04-30 00:46:53,544 - agent - INFO - vector_store.py:139 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载成功。
+2026-04-30 00:47:08,453 - agent - INFO - vector_store.py:115 - [加载知识库]文件 e:\github\ai\data\数据库.txt 已存在知识库内，跳过。
