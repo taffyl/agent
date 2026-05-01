@@ -213,3 +213,6 @@ ValueError: status_code: 400
  message: Model not exist.
 2026-04-30 00:46:53,544 - agent - INFO - vector_store.py:139 - [加载知识库]文件 e:\github\ai\data\数据库.txt 加载成功。
 2026-04-30 00:47:08,453 - agent - INFO - vector_store.py:115 - [加载知识库]文件 e:\github\ai\data\数据库.txt 已存在知识库内，跳过。
+2026-04-30 23:25:27,159 - agent - ERROR - prompt_loader.py:40 - [load_rag_prompt]读取RAG提示文件失败: [Errno 2] No such file or directory: 'E:\\github\\ai\\prompts/rag_prompt.txt'
+2026-04-30 23:37:22,152 - agent - INFO - vector_store.py:115 - [加载知识库]文件 E:\github\ai\data\数据库.txt 已存在知识库内，跳过。
+2026-04-30 23:38:42,690 - agent - INFO - vector_store.py:115 - [加载知识库]文件 E:\github\ai\data\数据库.txt 已存在知识库内，跳过。

@@ -11,3 +11,7 @@ try:
     print("文件已删除或不存在")
 except PermissionError:
     print("没有删除权限")
+    
+    
+for i in ["sad",2,3]:
+    print(i)

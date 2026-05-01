@@ -1,0 +1,13 @@
+# config/database.yml
+  driver: "mysql+pymysql"
+  username: "root"
+  password: "sqltotural"
+  host: "localhost"
+  port: 3306
+  database_name: "langchain_app"
+  charset: "utf8mb4"
+  
+  # 连接池可选配置
+  pool_size: 5
+  max_overflow: 10
+  echo: false  # 是否打印 SQL 日志，生产环境建议设为 false

@@ -29,11 +29,12 @@ class RagSummarizeService(object):
         return chain
 
     def retriever_docs(self, query: str) -> list[Document]:
-        self.retriever.invoke(query)
+        return self.retriever.invoke(query)
         
     def rag_summary(self, query: str) -> str:
-        context_docs = self.retriever_docs(query)
-        
+        print(query)
+        context_docs: list[Document] = self.retriever_docs(query)
+        # 测试:print(context_docs)
         context = ""
         counter = 0
         
@@ -50,4 +51,4 @@ class RagSummarizeService(object):
         
 if __name__ == "__main__":
     rag = RagSummarizeService()
-    rag.rag_summary("数据库是什么？")
+    print(rag.rag_summary("我们聊的什么"))

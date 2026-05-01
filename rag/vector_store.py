@@ -149,7 +149,7 @@ if __name__ == "__main__":
 
     retriever = vs.get_retriever()
     
-    res = retriever.invoke("数据库")
+    res: list[Document] = retriever.invoke("数据库")
     for r in res:
         print(r.page_content)
         print("_______________________________")

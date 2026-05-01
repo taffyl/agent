@@ -12,12 +12,12 @@ completion = client.chat.completions.create(
 messages = [
     {
         "role": "system", 
-        "content": "你是一个医疗顾问，需要用严谨的医疗知识回答下面问题："
+        "content": "用户正在运行一个API测试程序，如果你接收到了用户内容，请告诉用户API正常"
     },
     
     {
         "role": "user", 
-        "content": "我最近三天一直头痛，该怎么办？"
+        "content": "你好"
     },
 ]
 )
