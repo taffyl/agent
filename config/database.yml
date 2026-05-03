@@ -4,7 +4,7 @@
   password: "sqltotural"
   host: "localhost"
   port: 3306
-  database_name: "langchain_app"
+  database_name: "trade_db"
   charset: "utf8mb4"
   
   # 连接池可选配置

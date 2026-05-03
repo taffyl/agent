@@ -2,64 +2,71 @@ from abc import ABC, abstractmethod
 from typing import Optional
 
 from langchain_core.embeddings import Embeddings
-from langchain_community.embeddings import DashScopeEmbeddings
-from langchain_community.chat_models.tongyi import BaseChatModel
-from langchain_community.chat_models.tongyi import ChatTongyi
+from langchain_core.language_models import BaseChatModel
+
+import os
+
+# 1. 引入通用的 OpenAI 兼容类
+from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
 
 from utils.config_hander import rag_conf
 
 class BaseModelFactory(ABC):
     """
     模型工厂基类，定义生成 LangChain 模型实例的抽象接口。
-    
-    所有具体的模型工厂子类都应继承此类并实现 generator 方法，
-    以确保统一的模型创建标准。
     """
 
     @abstractmethod
     def generator(self) -> Optional[Embeddings | BaseChatModel]:
         """
         抽象方法：生成并返回一个模型实例。
-        
-        Returns:
-            Optional[Embeddings | BaseChatModel]: 返回 Embeddings 或 BaseChatModel 实例，
-            如果创建失败则返回 None。
         """
         pass
     
 
 class ChatModelFactory(BaseModelFactory):
     """
-    聊天模型工厂类，负责创建和配置 ChatTongyi 聊天模型实例。
+    聊天模型工厂类，负责创建兼容 OpenAI 接口的聊天模型实例。
     """
 
     def generator(self) -> Optional[Embeddings | BaseChatModel]:
         """
-        创建并返回一个 ChatTongyi 聊天模型实例。
-        
-        使用配置文件 rag_conf 中的 'chat_model_name' 作为模型名称。
-        
-        Returns:
-            Optional[Embeddings | BaseChatModel]: 返回配置好的 ChatTongyi 实例。
+        创建并返回一个 ChatOpenAI 实例，配置为指向第三方服务商。
         """
-        return ChatTongyi(model=rag_conf["chat_model_name"])
+        # 从配置中获取必要信息
+        model_name = rag_conf.get("chat_model_name", "gpt-4o-mini")
+        base_url = rag_conf.get("base_url", "https://api.openai.com/v1") # 默认值以防配置缺失
+        api_key = os.getenv("OPENAI_API_KEY")
+
+        return ChatOpenAI(
+            model=model_name,
+            base_url=base_url,
+            api_key=api_key, # 如果为None，langchain会自动读取环境变量 OPENAI_API_KEY
+            temperature=0.7, # 可选：设置温度
+        )
         
 
 class EmbeddingModelFactory(BaseModelFactory):
     """
-    嵌入模型工厂类，负责创建和配置 DashScopeEmbeddings 嵌入模型实例。
+    嵌入模型工厂类，负责创建兼容 OpenAI 接口的嵌入模型实例。
     """
 
     def generator(self) -> Optional[Embeddings | BaseChatModel]:
         """
-        创建并返回一个 DashScopeEmbeddings 嵌入模型实例。
-        
-        使用配置文件 rag_conf 中的 'embedding_model_name' 作为模型名称。
-        
-        Returns:
-            Optional[Embeddings | BaseChatModel]: 返回配置好的 DashScopeEmbeddings 实例。
+        创建并返回一个 OpenAIEmbeddings 实例，配置为指向第三方服务商。
         """
-        return DashScopeEmbeddings(model=rag_conf["embedding_model_name"])
+        # 从配置中获取必要信息
+        model_name = rag_conf.get("embedding_model_name", "text-embedding-3-small")
+        base_url = rag_conf.get("base_url", "https://api.openai.com/v1")
+        api_key = rag_conf.get("api_key", None)
+
+        return OpenAIEmbeddings(
+            model=model_name,
+            base_url=base_url,
+            api_key=api_key,
+        )
     
+# 实例化
 chat_model = ChatModelFactory().generator()
 embedding_model = EmbeddingModelFactory().generator()

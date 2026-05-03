@@ -1,17 +1,1 @@
-from pathlib import Path
-import os
-
-# 创建 Path 对象
-file_path = Path(__file__).parent/"testfile"/"test.txt"
-
-print(file_path)
-# 方法2：使用 missing_ok 参数（Python 3.8+）
-try:
-    file_path.unlink(missing_ok=True)  # 文件不存在也不会报错
-    print("文件已删除或不存在")
-except PermissionError:
-    print("没有删除权限")
-    
-    
-for i in ["sad",2,3]:
-    print(i)
+l = [HumanMessage(content='告诉我交易表里有哪些数据', additional_kwargs={}, response_metadata={}, id='2f790d82-e7c5-46fa-a45c-fca824d76e70'), AIMessage(content='', additional_kwargs={'refusal': None}, response_metadata={'token_usage': {'completion_tokens': 17, 'prompt_tokens': 605, 'total_tokens': 622, 'completion_tokens_details': {'accepted_prediction_tokens': None, 'audio_tokens': None, 'reasoning_tokens': 0, 'rejected_prediction_tokens': None}, 'prompt_tokens_details': None}, 'model_provider': 'openai', 'model_name': 'Qwen/Qwen3-14B', 'system_fingerprint': '', 'id': '019de88eab4cd9248b4196f55c78b1e1', 'finish_reason': 'tool_calls', 'logprobs': None}, id='lc_run--019de88e-aac1-76e3-8b14-863b0bb466c1-0', tool_calls=[{'name': 'get_all_table_names', 'args': {}, 'id': '019de88eacd7bf49f7c7c6d5ba5a564f', 'type': 'tool_call'}], invalid_tool_calls=[], usage_metadata={'input_tokens': 605, 'output_tokens': 17, 'total_tokens': 622, 'input_token_details': {}, 'output_token_details': {'reasoning': 0}})]
