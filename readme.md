@@ -58,7 +58,7 @@
 │   ├── file_handler.py     # 文件处理 (MD5计算, 加载器)
 │   ├── logger_hander.py    # 日志记录器
 │   └── path_tool.py        # 路径处理工具
-└── requirements.txt        # (建议补充) 依赖列表
+└── pyproject.toml
 ```
 
 ## 🚀 快速开始
