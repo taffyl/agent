@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware  # 新增导入
 from pydantic import BaseModel
 from api.agent_api_handler import user_input_stream
 from utils.logger_hander import logger
+from utils.path_tool import get_abs_path
 import os
 
 # 初始化 FastAPI 应用
@@ -25,13 +26,11 @@ app.add_middleware(
 
 # 2. 挂载静态文件目录
 # 假设 static 文件夹在 app 目录下
-static_dir = os.path.join(os.path.dirname(__file__), "static")
-if os.path.exists(static_dir):
-    app.mount("/static", StaticFiles(directory=static_dir), name="static")
-    # 你也可以选择将根路径指向 index.html，但这通常需要更复杂的路由处理
-    # 简单起见，你可以访问 http://127.0.0.1:8000/static/index.html
 
-# ... 其余代码保持不变 ...
+app.mount("/static", StaticFiles(directory = get_abs_path("app\static")), name = "static")
+    # 访问 http://127.0.0.1:8000/static/index.html
+
+app.mount("/img", StaticFiles(directory = get_abs_path("img")), name = "img")
 
 # 定义请求体模型
 class ChatRequest(BaseModel):

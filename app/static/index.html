@@ -1,9 +1,12 @@
+<!-- e:\github\ai\app\static\index.html -->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AI Agent Chat</title>
+    <!-- 简单的 Favicon (可以使用绿色圆圈图标) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍀</text></svg>">
     <!-- 引入 CSS -->
     <link rel="stylesheet" href="style.css">
     <!-- 引入 marked.js 用于解析 Markdown -->
@@ -12,12 +15,15 @@
 <body>
 
 <div class="chat-container">
-    <div class="header">AI Agent Chat</div>
+    <div class="header">
+        <span>🍀 AI Agent Chat</span>
+    </div>
     
     <div class="messages-area" id="messagesArea">
         <!-- 欢迎消息 -->
         <div class="message ai">
-            你好！我是你的 AI 助手，有什么可以帮你的吗？
+            你好！我是你的 AI 助手。有什么可以帮你的吗？<br>
+            我可以帮你写代码、解答问题或进行创意写作。
         </div>
     </div>
 

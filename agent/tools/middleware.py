@@ -1,9 +1,9 @@
 from typing import Callable
 
 from utils.logger_hander import logger
-
+from utils.prompt_loader import load_system_prompt, load_visualize_prompt
 from langchain.agents import AgentState
-from langchain.agents.middleware import wrap_tool_call, before_model
+from langchain.agents.middleware import wrap_tool_call, before_model, dynamic_prompt, ModelRequest
 from langchain.tools.tool_node import ToolCallRequest
 from langchain_core.messages import ToolMessage
 from langgraph.types import Command
@@ -33,8 +33,12 @@ def monitor_tool(
     try:
         # 执行工具逻辑
         result = handler(request)
+        
+        if request.tool_call["name"] == "call_data_visualize_agent":
+            request.runtime.context["prompt"] = "visualize"
+        
         return result
-    
+        
     except Exception as e:
         logger.error(f"[工具调用]工具执行出错: {e}")
         raise e
@@ -53,8 +57,16 @@ def log_before_model_call(
         raise Exception("[工具调用]消息列表为空")
     
     logger.info(f"[模型调用]开始执行模型，带有 {message_count} 条消息")
-    logger.debug(f"[模型调用]消息内容: {messages_type_name}:{state['messages']}")
+    logger.info(f"[模型调用]消息内容: {messages_type_name}:{state['messages']}")
     
     return None
-    
-    
+
+@dynamic_prompt
+def report_prompt_switch(request: ModelRequest):
+    p = request.runtime.context.get("report", "system")
+    if p == "visualize":
+        logger.info("[模型调用]使用visualize提示语")
+        return load_visualize_prompt()
+    elif p == "system":
+        return load_system_prompt()
+

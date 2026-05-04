@@ -1,12 +1,22 @@
+/* e:\github\ai\app\static\style.css */
+
 :root {
-    --primary-color: #007bff;
-    --bg-color: #f5f7fa;
-    --chat-bg: #ffffff;
-    --user-msg-bg: #007bff;
-    --user-msg-text: #ffffff;
-    --ai-msg-bg: #f0f2f5;
-    --ai-msg-text: #333333;
-    --border-color: #e1e4e8;
+    /* 绿色基础色调 - 清新现代风格 */
+    --primary-color: #10b981;       /* 主绿色 (Emerald 500) */
+    --primary-hover: #059669;       /* 深绿色 (Emerald 600) */
+    --primary-light: #d1fae5;       /* 浅绿色背景 (Emerald 100) */
+    
+    --bg-color: #f3f4f6;            /* 页面背景灰 */
+    --chat-bg: #ffffff;             /* 聊天框背景白 */
+    
+    --user-msg-bg: #10b981;         /* 用户消息背景绿 */
+    --user-msg-text: #ffffff;       /* 用户消息文字白 */
+    
+    --ai-msg-bg: #f0fdf4;           /* AI消息背景极浅绿 (Emerald 50) */
+    --ai-msg-text: #1f2937;         /* AI消息文字深灰 */
+    
+    --border-color: #e5e7eb;        /* 边框浅灰 */
+    --text-secondary: #6b7280;      /* 次要文字灰色 */
 }
 
 body {
@@ -17,16 +27,27 @@ body {
     display: flex;
     justify-content: center;
     height: 100vh;
+    color: #333;
 }
 
 .chat-container {
     width: 100%;
-    max-width: 800px;
+    max-width: 900px; /* 稍微加宽一点 */
     background-color: var(--chat-bg);
     display: flex;
     flex-direction: column;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* 更柔和的阴影 */
     height: 100%;
+    border-radius: 0; /* 移动端全屏，桌面端可考虑加圆角 */
+}
+
+@media (min-width: 768px) {
+    .chat-container {
+        height: 90vh;
+        margin-top: 5vh;
+        border-radius: 16px;
+        overflow: hidden;
+    }
 }
 
 /* 头部 */
@@ -34,10 +55,14 @@ body {
     padding: 15px 20px;
     border-bottom: 1px solid var(--border-color);
     text-align: center;
-    font-weight: bold;
-    font-size: 1.2em;
+    font-weight: 600;
+    font-size: 1.25em;
     background-color: #fff;
-    z-index: 10;
+    color: var(--primary-color); /* 标题使用主色 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 /* 消息区域 */
@@ -47,134 +72,174 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
+    background-color: #fafafa; /* 略微区分背景 */
+    scroll-behavior: smooth;
 }
 
 .message {
-    max-width: 80%;
-    padding: 10px 15px;
-    border-radius: 12px;
+    max-width: 85%;
+    padding: 12px 16px;
+    border-radius: 16px;
     line-height: 1.6;
     word-wrap: break-word;
     position: relative;
+    font-size: 0.95rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
 }
 
 .message.user {
     align-self: flex-end;
     background-color: var(--user-msg-bg);
     color: var(--user-msg-text);
-    border-bottom-right-radius: 2px;
+    border-bottom-right-radius: 4px;
 }
 
 .message.ai {
     align-self: flex-start;
     background-color: var(--ai-msg-bg);
     color: var(--ai-msg-text);
-    border-bottom-left-radius: 2px;
+    border-bottom-left-radius: 4px;
+    border: 1px solid var(--primary-light); /* 增加细微边框 */
 }
 
 /* Markdown 样式调整 */
+.message.ai h1, .message.ai h2, .message.ai h3 {
+    margin-top: 10px;
+    margin-bottom: 8px;
+    color: var(--primary-hover);
+}
+
 .message.ai p {
     margin: 0 0 10px 0;
 }
 .message.ai p:last-child {
     margin-bottom: 0;
 }
-.message.ai pre {
-    background-color: #2d2d2d;
-    color: #ccc;
-    padding: 10px;
-    border-radius: 5px;
-    overflow-x: auto;
+
+.message.ai ul, .message.ai ol {
+    padding-left: 20px;
+    margin: 0 0 10px 0;
 }
+
+.message.ai blockquote {
+    border-left: 4px solid var(--primary-color);
+    padding-left: 10px;
+    color: var(--text-secondary);
+    margin: 0 0 10px 0;
+    background: rgba(16, 185, 129, 0.05);
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.message.ai pre {
+    background-color: #1e293b; /* 深色代码背景 */
+    color: #e2e8f0;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
 .message.ai code {
     font-family: Consolas, Monaco, "Andale Mono", monospace;
+    background-color: rgba(16, 185, 129, 0.1); /* 行内代码浅绿背景 */
+    color: #047857;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.message.ai pre code {
+    background-color: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+.message.ai a {
+    color: var(--primary-hover);
+    text-decoration: underline;
 }
 
 /* 输入区域 */
 .input-area {
-    padding: 20px;
+    padding: 15px 20px;
     border-top: 1px solid var(--border-color);
     background-color: #fff;
     display: flex;
-    gap: 10px;
+    gap: 12px;
+    align-items: flex-end; /* 底部对齐 */
 }
 
 textarea {
     flex: 1;
-    padding: 12px;
+    padding: 12px 15px;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 12px;
     resize: none;
-    height: 50px;
+    min-height: 24px;
+    max-height: 150px;
     font-family: inherit;
     outline: none;
-    transition: border-color 0.2s;
+    transition: all 0.2s;
+    background-color: #f9fafb;
+    line-height: 1.5;
 }
 
 textarea:focus {
     border-color: var(--primary-color);
+    background-color: #fff;
+    box-shadow: 0 0 0 3px var(--primary-light);
 }
 
 button {
-    padding: 0 20px;
+    padding: 10px 20px;
     background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
+    font-weight: 600;
+    transition: all 0.2s;
+    height: 42px; /* 固定高度匹配 textarea 初始状态 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(16, 185, 129, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 button:disabled {
-    background-color: #ccc;
+    background-color: #d1d5db;
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
 }
 
 /* 加载动画 */
-.typing-indicator {
-    display: inline-block;
-    width: 40px;
-    height: 10px;
-}
-.typing-indicator span {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: #999;
-    border-radius: 50%;
-    animation: typing 1.4s infinite ease-in-out both;
-    margin: 0 2px;
-}
-.typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
-.typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
-
-@keyframes typing {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1); }
-}
-
-
-/* ... 原有样式保持不变 ... */
-
-/* 新增：思考中加载动画样式 */
 .thinking-container {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #666;
+    color: var(--text-secondary);
     font-size: 0.9em;
+    font-style: italic;
 }
 
 .thinking-spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid #ccc;
+    border: 2px solid var(--primary-light);
     border-top-color: var(--primary-color);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
@@ -186,4 +251,37 @@ button:disabled {
     }
 }
 
-/* ... 原有样式保持不变 ... */
+/* 滚动条美化 */
+.messages-area::-webkit-scrollbar {
+    width: 6px;
+}
+.messages-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+.messages-area::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 3px;
+}
+.messages-area::-webkit-scrollbar-thumb:hover {
+    background-color: #94a3b8;
+}
+
+/* e:\github\ai\app\static\style.css */
+
+/* ... 现有代码 ... */
+
+/* 新增：聊天消息中的图片样式 */
+.message.ai img {
+    max-width: 100%;       /* 图片最大宽度不超过消息气泡 */
+    height: auto;          /* 高度自适应 */
+    border-radius: 8px;    /* 圆角 */
+    margin-top: 10px;      /* 上方间距 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影 */
+    display: block;        /* 块级显示，避免行内元素的间隙问题 */
+}
+
+/* 如果图片是加载中的状态，可以加一个背景色 */
+.message.ai img[src=""] {
+    background-color: #f0f0f0;
+    min-height: 100px;
+}

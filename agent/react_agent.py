@@ -4,36 +4,11 @@ from langchain.agents import create_agent
 from model.factory import chat_model
 from utils.prompt_loader import load_system_prompt, load_visualize_prompt
 
-from agent.tools.agent_tools import rag_summarize, get_all_table_names, get_table_data, plot_two_list, call_data_visualize_agent
+from agent.tools.agent_tools import rag_summarize, get_all_table_names, get_table_data, get_table_columns, query_database_tool
+from agent.tools.visualize_tools import plot_two_list
 from agent.tools.middleware import monitor_tool, log_before_model_call
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+from langchain_core.messages import HumanMessage, SystemMessage, AIMessage, ToolMessage
 
-class VisualizeAgent(object):
-    def __init__(self):
-        self.agent = create_agent(
-            model = chat_model,
-            system_prompt = load_visualize_prompt(),
-            tools = [plot_two_list],
-            middleware = [monitor_tool, log_before_model_call] 
-        )
-        
-    def execute_stream(self, data) -> Generator[str]:
-        input_dict = {
-            "messages": [
-                    {
-                    "role": "user",
-                    "content": f"对给你的数据进行可视化{data}"
-                    },
-                ]
-            }
-        
-        print(input_dict)
-        
-        for chunk in self.agent.stream(input_dict, stream_mode = "values"):
-            lastest_message = chunk["messages"][-1]
-
-            if type(lastest_message) is AIMessage:
-                yield lastest_message.content.strip() + "\n"
 
 
 class ReactAgent(object):
@@ -49,10 +24,10 @@ class ReactAgent(object):
         self.agent = create_agent(
             model = chat_model,
             system_prompt = load_system_prompt(),
-            tools = [get_all_table_names, get_table_data, call_data_visualize_agent],
+            tools = [get_all_table_names, get_table_columns, query_database_tool ,plot_two_list],
             middleware = [monitor_tool, log_before_model_call] 
         )
-        
+
     def execute_stream(self, query: str) -> Generator[str]:
         
         input_dict = {
@@ -69,20 +44,23 @@ class ReactAgent(object):
         
         print(input_dict)
         
-        for chunk in self.agent.stream(input_dict, stream_mode = "values"):
+        for chunk in self.agent.stream(input_dict, stream_mode = "values", context = {"prompt": "system"}):
             lastest_message = chunk["messages"][-1]
 
-            if type(lastest_message) is AIMessage:
-                yield lastest_message.content.strip() + "\n"
+            if isinstance(lastest_message, AIMessage):
+                yield lastest_message.content
+            elif isinstance(lastest_message, ToolMessage):
+                if lastest_message.name == "plot_two_list":
+                    yield lastest_message.content
+
 
 agent = ReactAgent()
 
-
-
 if __name__ == "__main__":
-    agent = VisualizeAgent()
-    for chunk in agent.execute_stream("data"):
-        print(chunk, end = "", flush = True)
+    for chunk in agent.execute_stream("我有鼠标五天的销量[2,2,4,3,3]，键盘5天的销量[7,1,2,3,3]，请帮我可视化"):
+        print(chunk)
+
+# 对[1,2,3,4,5],[1.8,3.3,2.1,3.4,5.2]进行可视化]
     
     # agent = create_agent(
     #         model = chat_model,
